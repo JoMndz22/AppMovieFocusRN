@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -18,6 +18,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 
 import {
   Colors,
@@ -31,6 +32,11 @@ const Section: React.FC<{
   title: string;
 }> = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <View style={styles.sectionContainer}>
       <Text
