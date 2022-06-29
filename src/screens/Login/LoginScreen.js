@@ -1,9 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Text, View, Button, TextInput, StyleSheet, Image } from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay/lib';
 
 import { AuthContext } from '../../context/AuthContext';
-import P from '../../atoms/P';
 
 const LoginScreen = (navigation) => {
 

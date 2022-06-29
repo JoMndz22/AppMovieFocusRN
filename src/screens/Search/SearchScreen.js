@@ -1,6 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import Spinner from 'react-native-loading-spinner-overlay/lib';
 import { GET } from '../../services/API';
 import { API_KEY } from '../../config';
 import CardMovie from '../../organisms/CardMovie';
@@ -11,7 +10,6 @@ const SearchScreen = (props) => {
 
     let movie = props.route.params.movie;
     const { navigation } = props;
-    const [spinner, setSpinner] = useState(true);
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {

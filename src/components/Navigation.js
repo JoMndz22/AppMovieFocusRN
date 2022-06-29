@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../screens/Home/HomeScreen.js';
+import HomeScreen from '../screens/Home/HomeScreen';
 import LoginScreen from '../screens/Login/LoginScreen';
 
 import { AuthContext } from '../context/AuthContext';

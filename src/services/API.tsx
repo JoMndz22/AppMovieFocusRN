@@ -5,7 +5,7 @@ interface GetData {
   search: boolean;
 }
 
-export const GET = async ({url, search = false}: GetData) => {
+export const GET = async (url: string, search?: boolean) => {
   let URL_API;
 
   !search
