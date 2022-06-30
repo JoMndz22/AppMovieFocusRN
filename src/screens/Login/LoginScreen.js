@@ -23,6 +23,7 @@ const LoginScreen = (navigation) => {
                     style={styles.input}
                     value={email}
                     placeholder="Enter email"
+                    placeholderTextColor={"#bbb"}
                     onChangeText={text => setEmail(text)}
                 />
 
@@ -30,6 +31,7 @@ const LoginScreen = (navigation) => {
                     style={styles.input}
                     value={password}
                     placeholder="Enter password"
+                    placeholderTextColor={"#bbb"}
                     onChangeText={text => setPassword(text)}
                     secureTextEntry
                 />
@@ -48,6 +50,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#000'
     },
     wrapper: {
         width: '80%',
