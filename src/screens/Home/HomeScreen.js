@@ -43,7 +43,7 @@ const HomeScreen = (props) => {
 
 
 
-                <Text style={styles.welcome}>POPULARES</Text>
+                <Text style={styles.welcome}>POPULAR MOVIES</Text>
 
                 {
                     popularMovies.map((data, index) => {
@@ -90,10 +90,9 @@ const styles = StyleSheet.create({
     },
     welcome: {
         fontSize: 22,
-        marginBottom: 8,
-        color: '#000',
-        textAlign: 'center',
-        marginBottom: 15
+        marginTop: 20,
+        marginBottom: 15,
+        color: '#fff'
     },
     imageStyle: {
         width: '100%',
