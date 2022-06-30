@@ -6,9 +6,9 @@ import { Font, Pantone } from "src/components/utils";
 const P = (props) => {
     const { txtColor, fSize, aling, txtUpper } = props;
 
-    const colorTxt = txtColor ? txtColor : "#000";
+    const colorTxt = txtColor ? txtColor : "#fff";
     const txtUppercase = txtUpper ? txtUpper : 'none';
-    const fontSizes = fSize ? fSize : 12;
+    const fontSizes = fSize ? fSize : 13;
     const alingTxt = aling ? aling : 'left';
 
     const Stylep = { color: colorTxt, fontSize: fontSizes, textAlign: alingTxt, textTransform: txtUppercase };

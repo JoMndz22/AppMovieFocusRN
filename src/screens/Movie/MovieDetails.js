@@ -5,6 +5,7 @@ import { GET } from '../../services/API';
 import { IMG_POST_URL } from '../../config';
 import P from '../../atoms/P';
 import CardMovie from '../../organisms/CardMovie';
+import CardSimilarMovie from '../../organisms/CardSimilarMovie';
 
 const MovieDetails = (props) => {
 
@@ -17,7 +18,7 @@ const MovieDetails = (props) => {
     const [languages, setLanguages] = useState([]);
 
     let names = '';
-    let img = `${IMG_POST_URL}${infoMovie.poster_path}`;
+    let img = `${IMG_POST_URL}${infoMovie.backdrop_path}`;
 
     languages.map((item) => {
         names += `${item.english_name} `;
@@ -28,16 +29,15 @@ const MovieDetails = (props) => {
 
         const getInfoMovie = async () => {
             const data = await GET(`/movie/${idMovie}`);
+            console.log(data);
             setInfoMovie(data);
             setCategories(data.genres);
             setLanguages(data.spoken_languages);
         }
 
         const getsimilarMovies = async () => {
-
             const data = await GET(`/movie/${idMovie}/similar`);
             setSimilarMovies(data.results);
-
         }
 
         getInfoMovie();
@@ -53,14 +53,14 @@ const MovieDetails = (props) => {
             <View style={{ backgroundColor: '#000' }}>
                 <Image style={styles.imageStyle} source={{ uri: img }} />
             </View>
-            <View style={{ paddingHorizontal: 25, paddingVertical: 10 }}>
-                <P fSize={25}>{infoMovie.original_title}</P>
+            <View style={styles.themeDv}>
+                <P fSize={22} txtColor={'#fff'}>{infoMovie.original_title}</P>
             </View>
 
             <View style={styles.container}>
-                <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={styles.detailsMovie}>
                     <View style={styles.infoPadd}>
-                        <P fSize={18}>Duración</P>
+                        <P fSize={18}>Duration</P>
                         <P txtColor="#767676">{infoMovie.runtime} mins.</P>
                     </View>
                     <View style={styles.infoPadd}>
@@ -80,36 +80,36 @@ const MovieDetails = (props) => {
                     </View>
                 </View>
                 <View style={{ marginTop: 20 }}>
-                    <P fSize={18}>Synopsis</P>
+                    <P fSize={22}>Synopsis:</P>
                     <P >{infoMovie.overview}</P>
                 </View>
 
-                <View style={styles.similar}>
-                    <View style={{ marginBottom: 30 }}>
-                        <P fSize={22}>Similar Movies:</P>
-                    </View>
+                <View style={{ marginTop: 30 }}>
+                    <P fSize={22}>Similar Movies:</P>
+                </View>
+
+            </View>
+
+
+            <View style={styles.similar}>
+
+                <View style={styles.similarContainer}>
                     {
                         (similarMovies.length > 0) ?
                             similarMovies.map((data, index) => {
                                 return (
-                                    <CardMovie
+                                    <CardSimilarMovie
                                         key={index}
-                                        id={data.id}
+                                        poster_path={data.poster_path}
                                         navigation={navigation}
-                                        image={data.backdrop_path}
-                                        title={data.original_title}
-                                        category={data.genre_ids}
-                                        date={data.release_date}
-                                        ranking={data.popularity}
-                                        description={data.overview}
                                     />
                                 )
                             })
                             :
                             <P fSize={22}> ** Not found **</P>
                     }
-
                 </View>
+
             </View>
         </ScrollView>
     )
@@ -121,10 +121,13 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 25,
         paddingVertical: 10,
+        backgroundColor: '#000'
     },
+    detailsMovie: { display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },
+    themeDv: { paddingHorizontal: 25, paddingVertical: 10, backgroundColor: '#000' },
     imageStyle: {
         width: '100%',
-        height: 350,
+        height: 225,
         resizeMode: 'contain'
     },
     infoPadd: {
@@ -132,7 +135,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         width: '33.333%',
     },
-    similar: { marginTop: 50, borderTopColor: '#dedede', borderTopWidth: 1, paddingTop: 25 }
+    similar: { paddingTop: 10, borderTopColor: '#767676', borderTopWidth: 1, paddingTop: 25, backgroundColor: '#000' },
+    similarContainer: { backgroundColor: '#000', width: '100%', display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }
 })
 
 export default MovieDetails

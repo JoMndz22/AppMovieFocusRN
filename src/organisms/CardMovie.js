@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { IMG_POST_URL } from '../config';
 import { AuthContext } from '../context/AuthContext';
