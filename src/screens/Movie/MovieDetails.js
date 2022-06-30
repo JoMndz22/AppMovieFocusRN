@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { ScrollView, StyleSheet, Text, View, Image } from 'react-native'
+import { ScrollView, StyleSheet, View, Image, TouchableOpacity, Linking } from 'react-native'
 import { GET } from '../../services/API';
 import { IMG_POST_URL } from '../../config';
 import P from '../../atoms/P';
@@ -29,7 +29,6 @@ const MovieDetails = (props) => {
 
         const getInfoMovie = async () => {
             const data = await GET(`/movie/${idMovie}`);
-            console.log(data);
             setInfoMovie(data);
             setCategories(data.genres);
             setLanguages(data.spoken_languages);
@@ -79,20 +78,31 @@ const MovieDetails = (props) => {
                         <P txtColor="#767676">{names}</P>
                     </View>
                 </View>
-                <View style={{ marginTop: 20 }}>
+                <View style={styles.mt20}>
+                    {
+                        infoMovie.homepage ?
+                            <TouchableOpacity onPress={() => Linking.openURL(infoMovie.homepage)}>
+                                <View style={styles.linking}>
+                                    <P>View More</P>
+                                </View>
+                            </TouchableOpacity>
+                            :
+                            null
+                    }
+
                     <P fSize={22}>Synopsis:</P>
                     <P >{infoMovie.overview}</P>
                 </View>
 
-                <View style={{ marginTop: 30 }}>
-                    <P fSize={22}>Similar Movies:</P>
-                </View>
+
 
             </View>
 
 
             <View style={styles.similar}>
-
+                <View style={[styles.mt20, styles.mb20, { paddingLeft: 25 }]}>
+                    <P fSize={22}>Similar Movies:</P>
+                </View>
                 <View style={styles.similarContainer}>
                     {
                         (similarMovies.length > 0) ?
@@ -100,6 +110,7 @@ const MovieDetails = (props) => {
                                 return (
                                     <CardSimilarMovie
                                         key={index}
+                                        id={data.id}
                                         poster_path={data.poster_path}
                                         navigation={navigation}
                                     />
@@ -120,9 +131,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: 25,
-        paddingVertical: 10,
+        paddingTop: 10,
+        paddingBottom: 20,
         backgroundColor: '#000'
     },
+    mt20: { marginTop: 20 },
+    mb20: { marginBottom: 20 },
     detailsMovie: { display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },
     themeDv: { paddingHorizontal: 25, paddingVertical: 10, backgroundColor: '#000' },
     imageStyle: {
@@ -135,7 +149,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         width: '33.333%',
     },
-    similar: { paddingTop: 10, borderTopColor: '#767676', borderTopWidth: 1, paddingTop: 25, backgroundColor: '#000' },
+    linking: { backgroundColor: '#767676', display: 'flex', width: 'auto', alignSelf: 'flex-start', paddingHorizontal: 10, paddingVertical: 5, marginBottom: 20, borderRadius: 8 },
+    similar: { borderTopColor: '#767676', borderTopWidth: 1, paddingBottom: 25, backgroundColor: '#000' },
     similarContainer: { backgroundColor: '#000', width: '100%', display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }
 })
 

@@ -34,10 +34,10 @@ const CardMovie = (props) => {
 
 const styles = StyleSheet.create({
     cardContainer: {
-        backgroundColor: '#1e1b26',
+        backgroundColor: '#0c0c0c',
         borderRadius: 8,
         marginBottom: 20,
-        borderColor: '#000',
+        borderColor: '#222222',
         borderWidth: 1,
 
     },

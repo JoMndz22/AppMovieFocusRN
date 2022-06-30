@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { Button, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { IMG_POST_URL } from '../../config';
+import { Button, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { AuthContext } from '../../context/AuthContext';
 import CardMovie from '../../organisms/CardMovie';
 import P from '../../atoms/P';
@@ -30,19 +29,17 @@ const HomeScreen = (props) => {
     }
 
     return (
-        <ScrollView style={{ flex: 1, backgroundColor: '#ffffff' }}>
+        <ScrollView style={{ flex: 1, backgroundColor: '#000' }}>
             <View style={styles.container}>
 
                 <TextInput
                     style={styles.input}
                     value={search}
+                    placeholderTextColor="#bbb"
                     placeholder="Search..."
                     onChangeText={text => setSearch(text)}
                     onSubmitEditing={() => sendMovie(search)}
                 />
-                <TouchableOpacity style={styles.button} onPress={() => sendMovie(search)}>
-                    <P txtColor={"#ffffff"} fSize={16} aling="center">Buscar</P>
-                </TouchableOpacity>
 
 
 
@@ -83,11 +80,12 @@ const styles = StyleSheet.create({
         borderColor: '#bbb',
         borderRadius: 5,
         paddingHorizontal: 14,
+        color: '#fff',
     },
     container: {
         flex: 1,
         paddingHorizontal: 25,
-        backgroundColor: '#fff',
+        backgroundColor: '#000',
         paddingVertical: 35
     },
     welcome: {

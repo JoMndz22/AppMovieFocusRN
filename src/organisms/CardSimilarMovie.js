@@ -4,7 +4,7 @@ import { IMG_POST_URL } from '../config';
 
 const CardSimilarMovie = (props) => {
 
-    const { poster_path, navigation } = props;
+    const { poster_path, navigation, id } = props;
 
     let img = `${IMG_POST_URL}${poster_path}`;
 
